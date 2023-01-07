@@ -1,0 +1,723 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\begin{enumerate}
+\def\labelenumi{\Roman{enumi}.}
+\item
+  \textbf{INTRODUCTION}
+\end{enumerate}
+
+Polycystic Ovary Syndrome or PCOS is common in women of childbearing age
+with an irregular menstrual cycle and androgen excess. The occurrence of
+PCOS in women of reproductive ages today is between five to 20 percent.
+It is a serious disease that forms cysts in the ovary due to excess
+androgen (male hormone). {[}1{]}
+
+PCOS has been prevalent in endometrial cancer patients who belong to the
+premenopausal age group (30-39 years old), and in the Philippines, this
+prevalence is apparent currently. In a study of Ortega, G., \& Aguilar,
+A., they gathered data from 487 Filipino endometrial cancer patients,
+and 61 (12.56\%) have PCOS. 34 out of 61 belong to premenopausal and
+menopausal age groups. According to them, Filipino women with
+endometrial cancer are more prone to PCOS and are more likely related to
+obesity, nulligravida (women who never got pregnant), nulliparous (had
+pregnant but never had a child), and records of abnormal blood glucose.
+{[}2{]}
+
+Some common symptoms of PCOS include:
+
+\begin{itemize}
+\item
+  Infrequent or absent menstrual periods
+\item
+  Excess body hair (hirsutism)
+\item
+  Acne
+\item
+  Weight gain or difficulty losing weight
+\item
+  Balding or thinning hair on the scalp
+\item
+  Skin tags
+\item
+  Darkened skin on the neck, groin, or underarms {[}3{]}
+\end{itemize}
+
+For this study, an available PCOS dataset from Kaggle repository is used
+to train the machine learning models. Since the dataset does classify
+the presence of PCOS, the classification accuracy is the important
+metric to consider when evaluating the model performance. It is
+important to accurately classify whether or not a person has PCOS in
+order to provide the appropriate treatment and management. The paper is
+arranged as follows: section 2 includes the methodology, sections 3 and
+4 are the results and discussion, and conclusion. Section 5 is the
+reference.
+
+\begin{enumerate}
+\def\labelenumi{\Roman{enumi}.}
+\setcounter{enumi}{1}
+\item
+  \textbf{METHODOLOGY}
+\end{enumerate}
+
+In our study of PCOS, we aimed to understand the factors that contribute
+to the development of PCOS and to identify potential predictors of the
+condition. To accomplish these goals, we used the dataset provided by
+Kottarathil. It has 42 attributes of 541 women. We then applied various
+statistical techniques, including univariate feature selection and
+machine learning algorithms, to identify the most important predictors
+of PCOS. We also performed correlation analyses and summary statistics
+to better understand the relationships between the different variables
+in our dataset. The dataset needs to go through several steps to
+preprocess and clean the data.
+
+Figure 1. Block Diagram of the Methodology.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \emph{Data Collection}
+\end{enumerate}
+
+The first step is to collect the dataset. Multiple online repositories
+provide free and available datasets. In this study, the PCOS dataset
+provided by Kottarathil from Kaggle will be used. The data was gathered
+across 10 different hospitals in Kerala, India. Identities of the female
+subjects remained undisclosed.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  \emph{Data Preprocessing}
+\end{enumerate}
+
+It is important to preprocess and clean the data to evaluate the
+performance without noise. Categorical data were converted to ordinal
+values. The dataset was also standardized.
+
+Experimental setups were varied into two setups: (1) setup where all
+features are selected, and (2) setup where features selection was
+implemented.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  \emph{Experimental Setup 1}
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \item
+    \textbf{Fitting into Model and Making Predictions}
+  \end{enumerate}
+\end{enumerate}
+
+With the data cleaned and selected, it is now ready to be processed by
+the models. The models used were KNN, SVM, logistic regression, RF, and
+XGboost. Using the prepared models, predictions were made with the
+standardized testing set. The k-fold cross-validation approach was used
+to determine the performance of each model across different splits of
+data.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\item
+  \textbf{K-Nearest Neighbor}
+\end{enumerate}
+
+K-nearest neighbors (KNN) is a simple and effective technique for
+classification and regression. It works by storing all available cases
+and classifying new cases based on a similarity measure (e.g., distance
+functions). Classification is done by a majority vote to its neighbors.
+{[}4{]}
+
+\begin{quote}
+\includegraphics[width=2.34896in,height=1.67043in]{media/image1.png}Figure
+2. Accuracy Vs Neighbor(k) values
+\end{quote}
+
+As shown in figure 2, it is concluded that k=10 and k=15 got the highest
+accuracy value of \textasciitilde88.23\%, with \textasciitilde96\%
+precision and \textasciitilde64\% recall. All features were included.
+Therefore, k=10 and k=15 were used on the KNN classifier for this setup.
+
+\includegraphics[width=3.38819in,height=2.409in]{media/image2.png}
+
+Figure 3. Actual values of testing set for KNN
+
+\includegraphics[width=3.38819in,height=2.409in]{media/image3.png}
+
+Figure 4. Predicted values of testing set for KNN
+
+Figure 3 and Figure 4 shows the scatter plot of actual and predicted
+values of testing set for KNN with all features. Many a predicted values
+differ from the actual values, with an accuracy score of
+\textasciitilde88\%, precision \textasciitilde96\%, and
+\textasciitilde64\% recall. Which means, KNN only classified
+\textasciitilde64\% of the samples correctly.
+
+The mean validation score of KNN is about 86\%. This suggest that the
+model is performing consistently in both training and testing set.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{1}
+\item
+  \textbf{Support Vector Machine}
+\end{enumerate}
+
+\includegraphics[width=3.38819in,height=2.40972in]{media/image2.png}SVM
+algorithm finds the hyperplane in a high-dimensional space that
+maximally separates the different classes.
+
+Figure 5. Actual values of testing set for SVM
+
+\includegraphics[width=3.38819in,height=2.409in]{media/image4.png}
+
+Figure 6. Predicted values of testing set for SVM
+
+Figure 5 and Figure 6 shows the scatter plot of actual and predicted
+values of testing set for SVM with all features. Many a predicted values
+differ from the actual values, with an accuracy score of
+\textasciitilde86\%, precision \textasciitilde87\%, and
+\textasciitilde64\% recall. Which means, SVM only classified
+\textasciitilde64\% of the samples correctly.
+
+The mean validation score of SVM is about 90\%. This strongly suggest
+that the model is performing consistently in both training and testing
+set for predicting presence of PCOS.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{2}
+\item
+  \textbf{Logistic Regression}
+\end{enumerate}
+
+Logistic regression is a statistical model that is used to predict a
+binary outcome from a set of independent variables. In this study, the
+scaled training set was fitted into the model and calculated the
+accuracy, precision and recall.
+
+\includegraphics[width=3.38819in,height=2.41011in]{media/image2.png}
+
+\includegraphics[width=3.38819in,height=2.41011in]{media/image5.png}Figure
+7. Actual values of testing set for LR
+
+\textbf{Figure 8. Predicted values of testing set for LR}
+
+Figure 7 and Figure 8 shows the scatter plot of actual and predicted
+values of testing set for LR with all features. Many a predicted values
+differ from the actual values, with an accuracy score of
+\textasciitilde84\%, precision \textasciitilde78\%, and
+\textasciitilde69\% recall. Which means, LR only classified
+\textasciitilde69\% of the samples correctly.
+
+The mean validation score of LR is about 88\%. This suggest that the
+model is performing consistently in both training and testing set.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{3}
+\item
+  \textbf{Random Forest}
+\end{enumerate}
+
+The concept behind random forests is that a large number of decision
+trees, each trained on a random subset of the training data, can work
+together to make more accurate predictions than any individual decision
+tree.
+
+Figure 9 and Figure 10 shows the scatter plot of actual and predicted
+values of testing set for RF with all features. Many a predicted values
+differ from the actual values, with an accuracy score of
+\textasciitilde91\%, precision \textasciitilde91\%, and
+\textasciitilde78\% recall. Which means, LR only classified
+\textasciitilde78\% of the samples correctly. This is the highest
+accuracy among the other models for this setup.
+
+The mean validation score of RF is about 91\%. This strongly suggests
+that the model is performing consistently in both training and testing
+set.
+
+\includegraphics[width=3.38819in,height=2.40972in]{media/image2.png}
+
+\includegraphics[width=3.38819in,height=2.40972in]{media/image6.png}Figure
+9. Actual values of testing set for RF
+
+Figure 10. Predicted values of testing set for RF
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{4}
+\item
+  \textbf{Extreme Gradient Boosting}
+\end{enumerate}
+
+XGBoost works by building a model in the form of an ensemble of weak
+learners (e.g., decision trees), and iteratively improving the model by
+adding new weak learners that correct the mistakes of the previous ones.
+
+\includegraphics[width=3.38819in,height=2.40634in]{media/image2.png}
+
+Figure 11. Actual values of testing set for XGB
+
+\includegraphics[width=3.38819in,height=2.40634in]{media/image7.png}
+
+Figure 12. Predicted values of testing set for XGB
+
+Figure 11 and Figure 12 shows the scatter plot of actual and predicted
+values of testing set for RF with all features. Few a predicted values
+differ from the actual values, with an accuracy score of
+\textasciitilde89\%, precision \textasciitilde85\%, and
+\textasciitilde80\% recall.
+
+The mean validation score of RF is about 89\%. This suggests that the
+model is performing consistently in both training and testing set.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  \textbf{Evaluation of Models}
+\end{enumerate}
+
+\includegraphics[width=3.38819in,height=1.84632in]{media/image8.png}
+
+Figure 13. Evaluation metrics for all models
+
+The bar graphs shows a visual comparison of accuracy, precision, and
+recall of the different models. RF has the highest accuracy of 0.91 and
+XG has the second highest accuracy of 0.89. LR has the lowest accuracy
+for this setup with 0.84. In terms of precision, RF also has the highest
+score of 0.91. Second highest is KNN with 0.89 and LR having the lowest
+precision of 0.78. in terms of recall, XG has the highest with 0.8 and
+followed by RF with 0.78. Table 1 shows the numerical comparison of the
+evaluation scores of each model.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0760}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1766}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2464}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2464}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2546}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Model}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Accuracy}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Precision}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Recall}
+\end{minipage} \\
+\midrule()
+\endhead
+\textbf{0} & KNN & 0.860294 & 0.896552 & 0.619048 \\
+\textbf{1} & SVM & 0.860294 & 0.870968 & 0.642857 \\
+\textbf{2} & LR & 0.845588 & 0.783784 & 0.690476 \\
+\textbf{3} & RF & 0.911765 & 0.916667 & 0.785714 \\
+\textbf{4} & XG & 0.897059 & 0.850000 & 0.809524 \\
+\bottomrule()
+\end{longtable}
+
+Table 1. Evaluation metrics of models with all features
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  \emph{Experimental Setup 2}.
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \item
+    \textbf{Feature Selection}
+  \end{enumerate}
+\end{enumerate}
+
+\begin{quote}
+\includegraphics[width=3.38819in,height=2.4125in]{media/image2.png}In
+this study, we used the SelectKBest method for feature selection. This
+method selects a specified number of the highest scoring features based
+on statistical tests. In this case, we selected the top 10 features
+based on their p-values, which indicated the probability that the
+relationship between the feature and the target variable was due to
+chance. There were no significant difference if we selected k number of
+features other than 10. This allowed us to narrow down the number of
+features in our dataset and improve the interpretability of the models.
+The 10 selected features include Weight (Kg), BMI, Cycle(R/I), weight
+gain(Y/N), hair growth(Y/N), skin darkening (Y/N), pimples(Y/N), fast
+food (Y/N), follicle No. (L), and follicle No. (R), with the top three
+are BMI, follicle No. (L), and follicle No. (R). The top three were
+identified using the chi-squared approach.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  \textbf{Fitting into Model and Making Predictions}
+\end{enumerate}
+
+With the data cleaned and selected, it is now ready to be processed by
+the models. The models used were KNN, SVM, logistic regression, RF, and
+XGboost. Using the prepared models, predictions were made with the
+standardized testing set. The k-fold cross-validation approach was used
+to determine the performance of each model across different splits of
+data.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\item
+  \textbf{K-Nearest Neighbor}
+\end{enumerate}
+
+Figure 14. Actual values of testing set for KNN
+
+Figure 14 and Figure 15 shows the scatter plot of actual and predicted
+values of testing set for RF with all features. Many a predicted values
+differ from the actual values, with an accuracy score of
+\textasciitilde88\%, precision \textasciitilde96\%, and
+\textasciitilde64\% recall.
+
+The mean validation score of KNN is about 87\%. This suggest that the
+model is performing consistently in both training and testing set.
+
+\includegraphics[width=3.38819in,height=2.41271in]{media/image9.png}Figure
+15. Predicted values of testing set for KNN
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{1}
+\item
+  \textbf{SVM}
+\end{enumerate}
+
+\includegraphics[width=3.38819in,height=2.41271in]{media/image2.png}
+
+Figure 16. Actual values of testing set for SVM
+
+\includegraphics[width=3.38819in,height=2.41271in]{media/image10.png}Figure
+17. Predicted values of testing set for SVM
+
+Figure 16 and Figure 17 shows the scatter plot of actual and predicted
+values of testing set for SVM with all features. Only a few predicted
+values differ from the actual values, with an accuracy score of
+\textasciitilde91\%, precision \textasciitilde91\%, and
+\textasciitilde80\% recall. Which means, SVM classified
+\textasciitilde80\% of the samples correctly.
+
+The mean validation score of SVM is about 90\%. This strongly suggests
+that the model is performing consistently in both training and testing
+set.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{2}
+\item
+  \textbf{Logistic Regression}
+\end{enumerate}
+
+\includegraphics[width=3.38819in,height=2.41271in]{media/image2.png}Figure
+18. Actual values of testing set for LR
+
+\includegraphics[width=3.38819in,height=2.41271in]{media/image11.png}Figure
+19. Predicted values of testing set for LR
+
+Figure 18 and Figure 19 shows the scatter plot of actual and predicted
+values of testing set for SVM with all features. Only a few predicted
+values differ from the actual values, with an accuracy score of
+\textasciitilde90\%, precision \textasciitilde87\%, and
+\textasciitilde80\% recall. Which means, SVM classified
+\textasciitilde80\% of the samples correctly.
+
+The mean validation score of SVM is about 92\%. This strongly suggests
+that the model is performing consistently in both training and testing
+set.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{3}
+\item
+  \textbf{Random
+  Forest}\includegraphics[width=3.38819in,height=2.4125in]{media/image2.png}
+\end{enumerate}
+
+Figure 20. Actual values of testing set for RF
+
+\includegraphics[width=3.38819in,height=2.41271in]{media/image12.png}
+
+Figure 21. Predicted values of testing set for RF
+
+Figure 20 and Figure 21 shows the scatter plot of actual and predicted
+values of testing set for SVM with all features. Only a few predicted
+values differ from the actual values, with an accuracy score of
+\textasciitilde88\%, precision \textasciitilde82\%, and
+\textasciitilde80\% recall. Which means, RF classified
+\textasciitilde80\% of the samples correctly.
+
+The mean validation score of RF is about 90\%. This suggest that the
+model is performing consistently in both training and testing set.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{4}
+\item
+  \textbf{Extreme Gradient Boosting}
+\end{enumerate}
+
+\includegraphics[width=3.38819in,height=2.41271in]{media/image2.png}
+
+Figure 22. Actual values of testing set for RF
+
+\includegraphics[width=3.38819in,height=2.41271in]{media/image12.png}
+
+Figure 23. Predict values of testing set for RF
+
+Figure 22 and Figure 23 shows the scatter plot of actual and predicted
+values of testing set for SVM with all features. Many a predicted values
+differ from the actual values, with an accuracy score of
+\textasciitilde88\%, precision \textasciitilde84\%, and
+\textasciitilde78\% recall. Which means, RF classified
+\textasciitilde80\% of the samples correctly.
+
+The mean validation score of RF is about 89\%. This suggest that the
+model is performing consistently in both training and testing set.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Evaluation of Models}
+\end{enumerate}
+
+\includegraphics[width=3.72203in,height=2.03125in]{media/image13.png}
+
+Figure 24. Evaluation metrics for all models (with feature selection)
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0777}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1807}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2520}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2520}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2375}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Model}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Accuracy}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Precision}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Recall}
+\end{minipage} \\
+\midrule()
+\endhead
+\textbf{0} & KNN & 0.852941 & 0.843750 & 0.642857 \\
+\textbf{1} & SVM & 0.919118 & 0.918919 & 0.809524 \\
+\textbf{2} & LR & 0.904412 & 0.871795 & 0.809524 \\
+\textbf{3} & RF & 0.897059 & 0.850000 & 0.809524 \\
+\textbf{4} & XG & 0.889706 & 0.846154 & 0.785714 \\
+\bottomrule()
+\end{longtable}
+
+Table 2. Evaluation metrics for all models (with feature selection)
+
+Figure 24 is a visual comparison of accuracy, precision, and recall of
+the different models. SVM has the highest accuracy of 0.91 and LR has
+the second highest accuracy of 0.90. KNN has the lowest accuracy for
+this setup with 0.85. In terms of precision, SVM also has the highest
+score of 0.91. Second highest is LR with 0.87 and KNN having the lowest
+precision of 0.84. In terms of recall, SVM, LR, and RF has the highest
+with 0.8 and KNN as the lowest with 0.64. Table 1 shows the numerical
+comparison of the evaluation scores of each model.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  \textbf{Correlation between selected features}
+\end{enumerate}
+
+\includegraphics[width=3.38819in,height=2.64613in]{media/image14.png}
+
+Figure 25. Heatmap of the correlation of different features selected
+
+The feature "BMI'' appears to have a strong positive correlation with
+the feature "Weight (Kg)" as indicated by the light shade of orange. On
+the other hand, the feature " follicle No. (L)'' appears to have a
+strong positive correlation with the feature " follicle No. (R)" as
+indicated by the light shade of orange.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\item
+  Comparative Analysis of Experimental Setup 1 and Experimental Setup 2
+\end{enumerate}
+
+In table 1, random forest achieved the highest accuracy with
+\textasciitilde0.91and precision \textasciitilde0.91 among the tested
+models in setup 1. Random forest had the second highest recall,
+indicating that it was able to correctly identify a significant number
+of the positive cases. It is followed by XGBoosting with
+\textasciitilde0.89 accuracy, \textasciitilde0.85 precision and
+\textasciitilde0.80 recall. Possible implication of this is that all of
+the features included in the dataset may be useful for predicting PCOS.
+However, in setup 2, the performance of the SVM model improved
+significantly, with an accuracy and precision of \textasciitilde0.92 and
+\textasciitilde0.81 recall. This could be due to the application of
+feature selection, which likely helped the model to focus on the most
+relevant features and improve its performance.
+
+We used F1 score to compare the performance of both models. We found
+that SVM from setup 2 has better performance than Random Forest from
+setup 1 with a F1 score of 0.86 while RF has 0.82. However, XGboosting
+has higher F1 score than random forest. It is possible that XGboosting
+performs better than random forest.
+
+\begin{enumerate}
+\def\labelenumi{\Roman{enumi}.}
+\setcounter{enumi}{2}
+\item
+  \textbf{RESULTS}
+\end{enumerate}
+
+The study used 541 samples of data of patients from 10 different
+hospitals in India. A total of 42 features were used and out of which
+only 10 features were selected using univariate feature selection
+(SelectKBest method), with the strong positive correlation between
+weight and BMI, and Follicle No. (L) and Follicle No. (R) of female. A
+comparison was made between the two different classifiers from different
+setups: Random Forest from setup 1, where all features were selected,
+and SVM from setup 2 where 10 features were selected. The F1 score
+helped determine the best model between the two. The F1 score for RF is
+0.825 and for that of SVM is 0.86, hence, model of Support Vector
+Machine is selected to determine the absence or presence of PCOS.
+
+\begin{enumerate}
+\def\labelenumi{\Roman{enumi}.}
+\setcounter{enumi}{3}
+\item
+  \textbf{CONCLUSION}
+\end{enumerate}
+
+In this study, we propose a model of predicting the presence of PCOS in
+female. It was shown experimentally that the SVM can be used predicting
+the presence of PCOS. In future work, we are very interested in
+verifying the robustness of our model by testing it different feature
+selection methods. We can also try other machine learning algorithms and
+collect more or use different dataset to see if it improves model
+performance.
+
+\begin{enumerate}
+\def\labelenumi{\Roman{enumi}.}
+\setcounter{enumi}{4}
+\item
+  \textbf{REFERENCES}
+\end{enumerate}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule()
+\begin{minipage}[b]{\linewidth}\raggedright
+{[}1{]}O. Negis, D. Brown, I. Galic, L. Zhaunova, Jain and T. Jain,
+"SUN-LB3 Relationship Between BMI and PCOS Symptoms Among Flo App Users
+in the United States.," 2020. {[}Online{]}. {[}Accessed 30 December
+2022{]}.
+\end{minipage} \\
+\midrule()
+\endhead
+{[}2{]}G. Ortega and A. Aguilar, "Prevalence and Characteristics of
+Polycystic Ovary Syndrome (PCOS) in Filipino Women Diagnosed with
+Endometrial Cancer: A five-year Retrospective Study," \emph{Philippine
+Journal of Reproductive Endocrinology and Infertility, ,} p. 13,
+2016. \\
+{[}3{]}N. I. o. C. H. a. H. Development, "Polycystic Ovary Syndrome
+(PCOS)," 2020. {[}Online{]}. Available:
+https://www.nichd.nih.gov/health/topics/pcos. {[}Accessed 30 December
+2022{]}. \\
+{[}4{]}S. Learn, "Nearest Neighbors: Scikit Learn Documentation,"
+{[}Online{]}. Available:
+https://l.facebook.com/l.php?u=https\%3A\%2F\%2Fscikit-learn.org\%2Fstable\%2Fmodules\%2Fneighbors.html\%3Ffbclid\%3DIwAR3CWJLam9nwAGDsr8rQUClKOMD4bfIp8IvOi2twqXHk-x99lDqBL44Q4L8\&h=AT3jA5o83tiCk4yUKQJzd4t\_ARFQCrNmnwc2LxtD594-wu1iuJkx-day5QB5kP6oo3Wyf7fdD7PoKH3x9U. \\
+\bottomrule()
+\end{longtable}
+
+\end{document}
