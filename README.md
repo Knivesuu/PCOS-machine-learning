@@ -10,4 +10,4 @@ Logistic Regression
 Random Forest
 XGboosting
 
-We will add noise to our dataset to test the robustness of these machine learning models and understand how they might perform on more realistic or noisy data. Noisy data will be implemented in both setups.
+We will do a comparative analysis of the two setup to determine which model performs better under selected features. 
